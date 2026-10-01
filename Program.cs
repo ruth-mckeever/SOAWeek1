@@ -9,7 +9,10 @@ class Program
         //Question3();
         //Question4();
         //Question5();
-        Question6();
+        //Question6();
+        //Question7();
+        //Question8();
+        Question9();
     }
 
     static void Question1() //1. Guessing Game
@@ -119,6 +122,69 @@ class Program
         int c = 13;
         Console.WriteLine($"{a}, {b}, {c} could make a right angled triangle: {CheckIfRightAngledTriangle(a, b, c)}");
     }
+
+    private static void Question7()
+    {
+        //15.	Write a program that calculates and prints the average of several integers. Assume the last value read is the sentinel 9999.
+        //A typical input sequence might be 10 8 11 7 9 9999 indicating that the average of all the values preceding 9999 is to be calculated.
+        int sentinel = 9999;
+        Console.WriteLine("Please enter integers: (9999 to exit)");
+        int input = Convert.ToInt32(Console.ReadLine());
+        int count = 0, sum = 0;
+        double average = 0;
+        while (input != sentinel)
+        {
+            count++;
+            sum += input;
+            input = Convert.ToInt32(Console.ReadLine());
+        }
+
+        average = sum / count;
+        Console.WriteLine($"Average of all numbers entered is: {average}");
+
+    }
+    private static void Question8()
+    {
+        //16.	One interesting application of computers is drawing graphs and bar charts (sometimes called “histograms”).
+        //Write a program that reads five numbers (each between 1 and 30).
+        //For each number read, your program should print a line containing that number of adjacent asterisks.
+        //For example, if your program reads the number seven, it should print *******.
+        int[] numArray =  new int[5];
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine("Enter a number between 1 and 30");
+            numArray[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        foreach (int num in numArray)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();        //Only move onto a new line after correct number of * have been printed
+        }
+    }
+    
+    private static void Question9()
+    {
+        //19.	Develop a C# program that will determine the gross pay for each of several employees.
+        //  The company pays “straight-time” for the first 40 hours worked by each employee and pays “time-and-a-half” for all hours worked in excess of 40 hours.
+        //  You are given a list of the employees of the company, the number of hours each employee worked last week and the hourly rate of each employee.
+        //  Your program should input this information for each employee and should determine and display the employee's gross pay.
+        Employee emp1 = new Employee("Ted", 28, 12.5);
+        Employee emp2 = new Employee("Tom", 40, 13.5);
+        Employee emp3 = new Employee("Tim", 45, 14.5);
+        Employee emp4 = new Employee("Tod", 50, 15.5);
+
+        Employee[] employeeList = { emp1, emp2, emp3, emp4 };
+
+        foreach (Employee emp in employeeList)
+        {
+            //TODO: Finish this
+        }
+
+    }
     
     //Helper methods/reusable functions - should ideally go in a separate class
     public static bool CheckPrimeNumber(int number)
@@ -153,5 +219,19 @@ class Program
             //z must be the largest side or two sides are equal
             return (z * z == ((x * x) + (y * y)));
         }
+    }
+}
+
+class Employee
+{
+    public string Name { get; set; }
+    public double HoursWorked { get; set; }
+    public double HourlyRate { get; set; }
+
+    public Employee(string name, double hoursWorked, double hourlyRate)
+    {
+        Name = name;
+        HoursWorked = hoursWorked;
+        HourlyRate = hourlyRate;
     }
 }
